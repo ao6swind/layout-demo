@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap v3.3.7 Layout Demo</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- layout -->
+        <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../src/css/main.css">
+        <!-- script -->
+        <script src="../src/js/jquery.min.js"></script>
+        <script src="../src/js/bootstrap.min.js"></script>
+        <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header>
+            <div class="main-nav">
+                <div class="navbar navbar-inverse navbar-static-top" >
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pnlMainNavber">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/">Layout Demo</a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="pnlMainNavber">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/course/index.html">Course</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="/project/index.html">Project</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi！ao6swind <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid" id="pnlMainBody" >
+            <div class="row" id="pnlMainBodyContent">
+                <div class="col-sm-2" id="pnlSubMenu">
+                    <div class="main-nav">
+                        <div class="navbar navbar-default navbar-static-top">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pnlSubNavbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="navbar-collapse collapse" id="pnlSubNavbar">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Courses</a></li>
+                                    <div class="clearfix"></div>
+                                    <li><a href="#">Students</a></li>
+                                    <div class="clearfix"></div>
+                                    <li><a href="#">Payments</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10" id="pnlContent">
+                    <ol class="breadcrumb">
+                        <li><a href="/course/index.html">Course</a></li>
+                        <li class="active">Create</li>
+                    </ol>
+                    <form class="form-horizontal" method="post">
+                        <fieldset>
+                            <legend>Basic Information</legend>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Name</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" name="name" placeholder="name of course" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Series</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="series" required>
+                                        <option value="">choose series...</option>
+                                        <option value="A">Art</option>
+                                        <option value="B">Business</option>
+                                        <option value="C">Computer</option>
+                                        <option value="L">Language</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Course Introduction</legend>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Description</label>
+                                <div class="col-md-8">
+                                    <textarea class="ckeditor" name="description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <button class="btn btn-default">Save</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="text-center">
+                Wind &copy; 2018
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+html, body{
+    height: 101%;
+    background-color: #222;
+}
+#pnlSubMenu{
+    padding:0;
+}
+#pnlMainBodyContent{
+    padding:0;
+    background-color: #f8f8f8;
+}
+#pnlContent{
+    background-color: white;
+    padding:1%;
+}
+footer{
+    padding: 2.5%;
+    min-height: 10%;
+    background-color: #222;
+    color:#9d9d9d
+}
+.navbar-static-top{
+    margin: 0;
+    border: 0;
+}
+#pnlSubNavbar > .navbar-nav{
+    width:100%;
+}
+#pnlSubNavbar > .navbar-nav > li{
+    width:100%;
+}
+#pnlSubNavbar > .navbar-nav > li > a{
+    width:100%;
+}
+#pnlSubNavbar > .navbar-nav > li:hover{
+    background-color:#e7e7e7;
+}

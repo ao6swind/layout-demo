@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap v3.3.7 Layout Demo</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- layout -->
+        <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../src/css/main.css">
+        <!-- script -->
+        <script src="../src/js/jquery.min.js"></script>
+        <script src="../src/js/bootstrap.min.js"></script>
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header>
+            <div class="main-nav">
+                <div class="navbar navbar-inverse navbar-static-top" >
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pnlMainNavber">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/">Layout Demo</a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="pnlMainNavber">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/course/index.html">Course</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="/project/index.html">Project</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi！ao6swind <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid" id="pnlMainBody" >
+            <div class="row" id="pnlMainBodyContent">
+                <div class="col-sm-2" id="pnlSubMenu">
+                    <div class="main-nav">
+                        <div class="navbar navbar-default navbar-static-top">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pnlSubNavbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="navbar-collapse collapse" id="pnlSubNavbar">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Courses</a></li>
+                                    <div class="clearfix"></div>
+                                    <li><a href="#">Students</a></li>
+                                    <div class="clearfix"></div>
+                                    <li><a href="#">Payments</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10" id="pnlContent">
+                    <ol class="breadcrumb">
+                        <li class="active">Course</a></li>
+                        <li><a href="/course/create.html">Create</a></li>
+                    </ol>
+                    <ul class="list-inline list-unstyled">
+                        <li><a class="btn btn-xs btn-default" role="button" data-toggle="collapse" data-target="#pnlSearch" aria-expanded="false" aria-controls="pnlSearch"><span class="glyphicon glyphicon-filter"></span> Filter</a></li>
+                        <li><a class="btn btn-xs btn-default"><span class="glyphicon glyphicon-import"></span> Import</a></li>
+                        <li><a class="btn btn-xs btn-default"><span class="glyphicon glyphicon-export"></span> Export</a></li>
+                    </ul>
+                    <div class="collapse" id="pnlSearch">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Id</label>
+                                <div class="col-md-3">
+                                    <input class="form-control input-sm" name="id" placeholder="keyword...">
+                                </div>
+                                <label class="col-md-1 control-label">Name</label>
+                                <div class="col-md-3">
+                                    <input class="form-control input-sm" name="name" placeholder="keyword...">
+                                </div>
+                                <label class="col-md-1 control-label">Series</label>
+                                <div class="col-md-3">
+                                    <select class="form-control input-sm" name="series">
+                                        <option value="">no limit...</option>
+                                        <option value="A">Art</option>
+                                        <option value="B">Business</option>
+                                        <option value="C">Computer</option>
+                                        <option value="L">Language</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                    <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-search"> </span> Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="active">
+                                    <th>Id</th>
+                                    <th>Series</th>
+                                    <th>Name</th>
+                                    <th>Create at</th>
+                                    <th>Update at</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1071A001</td>
+                                    <td>A</td>
+                                    <td>Painter</td>
+                                    <td>2018-02-18</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-search"></span> Detail</a>
+                                        <a class="btn btn-xs btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1071A001</td>
+                                    <td>A</td>
+                                    <td>Painter</td>
+                                    <td>2018-02-18</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-search"></span> Detail</a>
+                                        <a class="btn btn-xs btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1071A001</td>
+                                    <td>A</td>
+                                    <td>Painter</td>
+                                    <td>2018-02-18</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-search"></span> Detail</a>
+                                        <a class="btn btn-xs btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1071A001</td>
+                                    <td>A</td>
+                                    <td>Painter</td>
+                                    <td>2018-02-18</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-search"></span> Detail</a>
+                                        <a class="btn btn-xs btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1071A001</td>
+                                    <td>A</td>
+                                    <td>Painter</td>
+                                    <td>2018-02-18</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-search"></span> Detail</a>
+                                        <a class="btn btn-xs btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1071A001</td>
+                                    <td>A</td>
+                                    <td>Painter</td>
+                                    <td>2018-02-18</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-search"></span> Detail</a>
+                                        <a class="btn btn-xs btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        <a class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation" class="text-center">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="text-center">
+                Wind &copy; 2018
+            </div>
+        </footer>
+    </body>
+</html>

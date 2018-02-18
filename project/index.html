@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap v3.3.7 Layout Demo</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- layout -->
+        <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../src/css/main.css">
+        <link rel="stylesheet" href="../src/css/dhtmlxgantt.css">
+        <!-- script -->
+        <script src="../src/js/jquery.min.js"></script>
+        <script src="../src/js/bootstrap.min.js"></script>
+        <script src="../src/js/dhtmlxgantt.js"></script>
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header>
+            <div class="main-nav">
+                <div class="navbar navbar-inverse navbar-static-top" >
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pnlMainNavber">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/">Layout Demo</a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="pnlMainNavber">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/course/index.html">Course</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="/project/index.html">Project</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi！ao6swind <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid" id="pnlMainBody" >
+            <div class="row" id="pnlMainBodyContent">
+                <div class="col-sm-2" id="pnlSubMenu">
+                    <div class="main-nav">
+                        <div class="navbar navbar-default navbar-static-top">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pnlSubNavbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="navbar-collapse collapse" id="pnlSubNavbar">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Gantt</a></li>
+                                    <div class="clearfix"></div>
+                                    <li><a href="#">Member</a></li>
+                                    <div class="clearfix"></div>
+                                    <li><a href="#">Resource</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10" id="pnlContent">
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="/project/index.html">Project</a></li>
+                        <li>Detail</li>
+                    </ol>
+                    <div id="pnlGantt" style='width:100%; height:700px;'></div>
+                    <script type="text/javascript">
+                        function getResourceTasks(resourceId){
+                            var res = [];
+                            gantt.eachTask(function(task){
+                                if(task.user == resourceId && task.type != gantt.config.types.project){
+                                    res.push(task);
+                                }
+                            });
+                            return res;
+                        }
+
+                        function calculateResourceLoad(tasks, scale){
+                            var step = scale.unit;
+                            var timegrid = {};
+
+                            for(var i = 0; i < tasks.length; i++){
+                                var task = tasks[i];
+
+                                var currDate = gantt.date[step + "_start"](new Date(task.start_date));
+
+                                while(currDate < task.end_date){
+
+                                    var date = currDate;
+                                    currDate = gantt.date.add(currDate, 1, step);
+
+                                    if(!gantt.isWorkTime({date:date, task:task})){
+                                        continue;
+                                    }
+
+                                    var timestamp = date.valueOf();
+                                    if(!timegrid[timestamp])
+                                        timegrid[timestamp] = 0;
+
+                                    timegrid[timestamp] += 8;
+                                }
+                            }
+
+                            var timetable = [];
+                            var start, end;
+                            for(var i in timegrid){
+                                start = new Date(i*1);
+                                end = gantt.date.add(start, 1, step);
+                                timetable.push({
+                                    start_date: start,
+                                    end_date: end,
+                                    value: timegrid[i]
+                                });
+                            }
+
+                            return timetable;
+                        }
+
+                        var renderResourceLine = function(resource, timeline){
+                            var tasks = getResourceTasks(resource.id);
+                            var timetable = calculateResourceLoad(tasks, timeline.getScale());
+
+                            var row = document.createElement("div");
+
+                            for(var i = 0; i < timetable.length; i++){
+
+                                var day = timetable[i];
+
+                                var css = "";
+                                if(!day.value){
+                                    css = "workday_idle";
+                                }else if(day.value <= 8){
+                                    css = "workday_ok";
+                                }else{
+                                    css = "workday_over";
+                                }
+
+                                var sizes = timeline.getItemPosition(resource, day.start_date, day.end_date);
+                                var el = document.createElement('div');
+                                el.className = css;
+
+                                el.style.cssText = [
+                                    'left:'+ sizes.left + 'px',
+                                    'width:'+ sizes.width + 'px',
+                                    'position:absolute',
+                                    'height:'+ (gantt.config.row_height - 1) + 'px',
+                                    'line-height:'+ sizes.height + 'px',
+                                    'top:'+ sizes.top + 'px'
+                                ].join(";");
+
+                                el.innerHTML = day.value;
+                                row.appendChild(el);
+                            }
+                            return row;
+                        };
+
+                        var mainGridConfig = {
+                            columns:[
+                                {name:"text", tree:true, width:200, resize:true },
+                                {name:"start_date", align: "center", width:80, resize:true },
+                                {name:"owner", align: "center", width:60, label:"Owner", template:function(task){
+                                    var store = gantt.getDatastore("resource");
+                                    var owner = store.getItem(task.user);
+                                    if(owner){
+                                        return owner.label;
+                                    }else{
+                                        return "N/A";
+                                    }
+                                }
+                                },
+                                {name:"duration", width:50, align: "center" },
+                                {name:"add", width:44 }
+                            ]
+                        };
+
+                        var resourceGridConfig = {
+                            columns:[
+                                {name:"name", label:"Name", template: function(resource){
+                                    return resource.label;
+                                }},
+                                {name:"workload", label:"Workload", template: function(resource){
+                                    var tasks = getResourceTasks(resource.id);
+
+                                    var totalDuration = 0;
+                                    for(var i = 0; i < tasks.length; i++){
+                                        totalDuration += tasks[i].duration;
+                                    }
+
+                                    return (totalDuration || 0)*8 + "";
+                                }}
+                            ]
+                        };
+
+                        var resourceLayers = [
+                            gantt.$ui.layers.taskBg,
+                            renderResourceLine
+                        ];
+
+                        gantt.config.layout = {
+                            css: "gantt_container",
+                                rows:[
+                                {
+                                    cols: [
+                                        {view: "grid", id: "grid", config: mainGridConfig, scrollY:"scrollVer"},
+                                        {resizer: true, width: 1},
+                                        {view: "timeline", id: "timeline", scrollX:"scrollHor", scrollY:"scrollVer"},
+                                        {view: "scrollbar", scroll: "y", id:"scrollVer"}
+                                    ]
+                                },
+                                {resizer: true, width: 1, mode:"y"},
+                                {
+                                    cols: [
+                                        {view: "grid", id: "resourceGrid", width:435, bind:"resource", config:resourceGridConfig, scrollY:"resourceVScroll"},
+                                        {resizer: true, width: 1},
+                                        {view: "timeline", id: "resourceTimeline", scrollX:"scrollHor", bind:"resource", bindLinks: null,
+                                            layers: resourceLayers, scrollY:"resourceVScroll"},
+                                        {view: "scrollbar", scroll: "y", id:"resourceVScroll"}
+                                    ]
+                                },
+                                {view: "scrollbar", scroll: "x", id:"scrollHor"}
+                            ]
+                        };
+
+                        var resourcesStore = gantt.createDatastore({
+                            name:"resource",
+                            initItem: function(item){
+                                item.id = item.key || gantt.uid();
+                                return item;
+                            }
+                        });
+
+                        var tasksStore = gantt.getDatastore("task");
+                        tasksStore.attachEvent("onStoreUpdated", function(id, item, mode){
+                            resourcesStore.refresh();
+                        });
+
+
+                        gantt.init("pnlGantt");
+                        gantt.load("../src/js/data.json");
+
+                        resourcesStore.parse([// resources
+                            {key:'0', label: "N/A"},
+                            {key:'1', label: "John"},
+                            {key:'2', label: "Mike"},
+                            {key:'3', label: "Anna"}
+                        ]);
+                    </script>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="text-center">
+                Wind &copy; 2018
+            </div>
+        </footer>
+    </body>
+</html>
