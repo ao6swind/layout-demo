@@ -23,8 +23,15 @@ footer{
     margin: 0;
     border: 0;
 }
+/*************************************************************
+ 以下是為了垂直導覽列所做的額外設定，單純只是讓版變得好看一點而已
+ *************************************************************/
+#pnlSubNavbar{
+    padding:0;
+}
 #pnlSubNavbar > .navbar-nav{
     width:100%;
+    margin:0;
 }
 #pnlSubNavbar > .navbar-nav > li{
     width:100%;
